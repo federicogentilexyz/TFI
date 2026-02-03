@@ -1,0 +1,120 @@
+/* Reset e Base */
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
+
+body {
+    background-color: #fff;
+    color: #000;
+    font-family: 'Inter', sans-serif;
+    /* BASE: Tutto Bold Estremo (900) */
+    font-weight: 900; 
+    font-size: clamp(24px, 4vw, 36px); 
+    /* Interlinea stretta per effetto blocco/magazine */
+    line-height: 1.05; 
+    letter-spacing: -0.04em;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* HERO STROBE (Invariata) */
+.hero-strobe {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    pointer-events: none;
+    mix-blend-mode: exclusion; 
+}
+
+#flicker-word {
+    font-size: clamp(30px, 10vw, 45px);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.07em;
+    text-align: center;
+    color: #000;
+}
+
+/* CONTENUTO MANIFESTO */
+.main-flow {
+    position: relative;
+    z-index: 20;
+    background-color: #fff;
+    max-width: 900px;
+    margin: 0 auto;
+    /* Padding verticale ridotto */
+    padding: 100px 30px; 
+}
+
+/* TESTO GENERALE */
+p, .intro-text, .accent-block, .final-impact p {
+    /* SPAZIO RIDOTTO: Crea un flusso continuo */
+    margin-bottom: 25px; 
+    text-align: left;
+    font-weight: 900; 
+    text-transform: none; 
+}
+
+/* CITAZIONI */
+.quote-block {
+    /* SPAZIO RIDOTTO ma sufficiente per staccare */
+    margin: 50px 0; 
+    padding: 0;
+    border: none;
+}
+
+.italic-quote {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500; /* Peso medio */
+    font-style: italic;
+    font-size: 1.1em;
+    line-height: 1.1;
+    display: block;
+    margin-bottom: 15px; /* Spazio ridotto tra quote e autore */
+}
+
+.source {
+    font-weight: 900; 
+    font-style: normal;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    display: block;
+    text-align: right;
+}
+
+/* ELEMENTI NASCOSTI */
+hr.spacer {
+    display: none;
+}
+
+/* ZONA FINALE */
+.final-impact {
+    /* Spazio ridotto prima del finale */
+    margin-top: 60px; 
+}
+
+.mega-bold-final {
+    margin-top: 25px;
+    display: block;
+    text-transform: uppercase;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    body {
+        font-size: 22px; 
+    }
+    .main-flow {
+        padding: 60px 20px;
+    }
+    p {
+        margin-bottom: 20px;
+    }
+}
