@@ -6,8 +6,198 @@
     <title>THE FUTURE I WANT</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,500;0,900;1,500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,900;1,500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* RESET E BASE */
+        *, *::before, *::after { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+        }
+
+        body {
+            background-color: #fff;
+            color: #000;
+            font-family: 'Inter', sans-serif;
+            font-weight: 900; 
+            font-size: clamp(20px, 3.5vw, 32px); 
+            line-height: 1.1; 
+            letter-spacing: -0.04em;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* HERO STROBE */
+        .hero-strobe {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            pointer-events: none;
+            mix-blend-mode: exclusion;
+            isolation: isolate; /* impedisce al blend di "trapelare" oltre la hero */
+            background-color: white;
+            color: black;
+        }
+
+        /* Stato invertito (class toggle, evita inline style repaint) */
+        .hero-strobe.invert {
+            background-color: black;
+            color: white;
+        }
+
+        #flicker-word {
+            font-size: clamp(30px, 10vw, 45px);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.07em;
+            text-align: center;
+            color: inherit; /* eredita dal container per toggle con classe */
+        }
+
+        /* CONTENITORE TESTO */
+        .main-flow {
+            position: relative;
+            z-index: 20;
+            background-color: #fff;
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 80px 25px; 
+        }
+
+        p {
+            margin-bottom: 30px; 
+            text-align: left;
+        }
+
+        /* GESTIONE IMMAGINI (COLORI ORIGINALI) */
+        .content-image {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 40px 0;
+        }
+
+        /* CITAZIONI */
+        .quote-block {
+            margin: 60px 0;
+            padding: 0;
+        }
+
+        .italic-quote {
+            font-weight: 500; 
+            font-style: italic;
+            font-size: 1.1em;
+            line-height: 1.2;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .source {
+            font-weight: 900; 
+            text-transform: uppercase;
+            font-size: 0.75em;
+            display: block;
+            text-align: right;
+            margin-top: 10px;
+        }
+
+        /* SECOND BLOCK (merge dei CSS aggiuntivi che avevi) */
+        .main-flow { /* leggera differenza compatibile con il layout originale */
+            max-width: 900px;
+            padding: 100px 30px; 
+        }
+
+        p, .intro-text, .accent-block, .final-impact p {
+            margin-bottom: 25px; 
+            text-align: left;
+            font-weight: 900; 
+            text-transform: none; 
+        }
+
+        .quote-block {
+            margin: 50px 0; 
+        }
+
+        .italic-quote {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500; /* Peso medio */
+            font-style: italic;
+            font-size: 1.1em;
+            line-height: 1.1;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .source {
+            font-weight: 900; 
+            font-style: normal;
+            text-transform: uppercase;
+            font-size: 0.8em;
+            display: block;
+            text-align: right;
+        }
+
+        .final-impact {
+            margin-top: 60px; 
+        }
+
+        .mega-bold-final {
+            margin-top: 25px;
+            display: block;
+            text-transform: uppercase;
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            body {
+                font-size: 19px;
+            }
+            .main-flow {
+                padding: 60px 20px;
+            }
+            .quote-block {
+                margin: 40px 0;
+            }
+        }
+
+        /* FOOTER — isolato dal flicker */
+        .site-footer {
+            background: #fff;
+            color: #000;
+            padding: 80px 25px 60px;
+            isolation: isolate;
+            mix-blend-mode: normal;
+        }
+
+        .footer-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .footer-authors {
+            font-weight: 900;
+            font-size: clamp(16px, 2vw, 18px);
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+        }
+
+        .footer-credits {
+            font-weight: 500;
+            font-size: clamp(13px, 1.8vw, 15px);
+            line-height: 1.4;
+            opacity: 0.75;
+        }
+    </style>
 </head>
 <body>
 
@@ -16,107 +206,163 @@
     </div>
 
     <div class="main-flow">
-        
-        <p>
-            C’è un momento preciso in cui il XXI secolo ha smesso di guardare il mondo con occhi umani e ha iniziato a fissarlo attraverso l’ottica di una macchina. Questo progetto documentario è la cartografia di quel momento.
-        </p>
+         <img src="images/5.png" class="content-image">
+        <div class="quote-block">
+            <span class="italic-quote">«There has never been a conflict where we can casually watch the intimate final moments of so many people's lives with the swipe or tap of a finger until now. Do y'all think we as viewers are completely desensitized at this point or is our brain chemistry changing and effects will show in the future? Is this type of media getting quietly pushed past platform community guidelines to young men to subconsciously prepare us for the next big one? #Ukraine #FPV #Drone»</span>
+            <span class="source">— dal profilo Instagram @mantisintel</span>
+        </div>
 
-        <p>
-            Lo scrolling è diventato un gesto strutturale della nostra quotidianità. Un atto perfettamente integrato nei codici della sopravvivenza contemporanea, anche per la sua funzione anestetizzante e dissociante. All’interno di questo flusso apparentemente innocuo, scrollare si trasforma facilmente in un accumulo continuo di informazioni, immagini e notizie che si formano, si sovrappongo e si consumano senza mai davvero sedimentare.
-        </p>
+        <p>Lo scrolling è diventato un gesto strutturale della nostra quotidianità. Un atto perfettamente integrato nei codici della sopravvivenza contemporanea, anche per la sua funzione anestetizzante e dissociante. All’interno di questo flusso apparentemente innocuo, scrollare si trasforma facilmente in un accumulo continuo di informazioni, immagini e notizie che si formano, si sovrappongo e si consumano senza mai davvero sedentare.</p>
 
-        <p>
-            In una società che ci impone di restare funzionali, leggeri e performativi, immagini di guerra, genocidi e catastrofi scorrono sugli stessi schermi che utilizziamo per guardare vlog patinati o seguire l'ennesima narrazione spettacolarizzata della quotidianità occidentale.
-        </p>
+ 
 
-        <p>
-            Il doomscrolling diventa così il principale mezzo di informazione per la Generazione Z: un flusso costante e non mediato che produce consapevolezza immediata, ma allo stesso tempo destabilizzazione, shock, pessimismo e un senso diffuso di impotenza e depressione.
-        </p>
+        <p>In una società che ci impone di restare funzionali, leggeri e performativi, immagini di guerra, genocidi e catastrofi compaiono sugli stessi schermi che utilizziamo per guardare vlog patinati o seguire l'ennesima narrazione spettacolarizzata della quotidianità occidentale. Il doomscrolling diventa così il principale mezzo di informazione per la Generazione Z: una esposizione continua e non mediata che produce consapevolezza immediata, ma allo stesso tempo destabilizzazione, shock, pessimismo e un senso diffuso di impotenza e depressione.</p>
+    <img src="images/4.png" class="content-image">
+        <p>L’architettura dei social media trasforma ogni evento in un’icona transitoria, un’immagine-simbolo destinata a durare pochi secondi prima di essere sostituita. Anche Gaza, che sembrava poter rappresentare la tragedia definitiva capace di interrompere il nostro gesto meccanico, è stata rapidamente assorbita e disumanizzata dal dispositivo che l’ha resa visibile.</p>
 
-        <p>
-            Il telefono si fa informatore, ma al contempo mezzo problematico di quella stessa informazione, non riuscendo mai, fino in fondo, ad instaurarsi nelle menti. Il continuum di contenuti che caratterizza i social media trasforma ogni evento in un’icona transitoria, immagini-simbolo destinate a durare pochi secondi prima di essere rimpiazzate. 
-        </p>
+        <p>Il flusso di notizie non si interrompe, ma persiste in modo patologico, fuggente, impotente. La verità è che non possiamo fare altro che questo:</p>
 
-        <p>
-            Anche Gaza, che sembrava poter rappresentare la tragedia definitiva, capace di interrompere il nostro gesto meccanico, è stata rapidamente assorbita e disumanizzata dal medium stesso che l’ha resa visibile.
-        </p>
-
-        <p>
-            Il flusso di notizie non si interrompe, ma persiste in modo patologico, fuggente, impotente. La verità è che non possiamo fare altro che questo:
-        </p>
-        
         <div class="quote-block">
             <span class="italic-quote">«Guardare tutto, non toccare niente»</span>
             <span class="source">— Walter Benjamin</span>
         </div>
 
+        <p>Non è la realtà, ma una sua versione sterilizzata: una post-verità. È uno sguardo che non respira, non trema, non percepisce l’odore del ferro e del sangue, il peso del corpo, la prossimità della morte. </p>
+            
+  <img src="images/9.png" class="content-image">
+    <p>In questo processo il corpo della vittima si riduce a un’immagine sospesa pochi frame prima dell’impatto, mentre quello del carnefice diventa un operatore distante.</p>
+        <p>Il progetto documenta lo stato di una generazione completamente bruciata dal proprio rapporto con i social media, ma allo stesso tempo lucidamente consapevole della violenza strutturale del mondo che la circonda. Non è una provocazione né una celebrazione del male, ma una constatazione amara. La violenza è già distribuita nei dispositivi che usiamo, nei linguaggi che adottiamo, nelle interfacce che mediano il mondo per noi.</p>
 
-        <p>
-            Questa non è la realtà, ma una sua versione sterilizzata; una sorta di post-verità. È uno sguardo che non respira, non trema, non percepisce l’odore del ferro e del sangue, il peso del corpo, la prossimità della morte. 
-        </p>
-
-        <p>
-            In questo processo scompare il corpo della vittima, ridotto a un’immagine sospesa pochi frame prima dell’impatto, e scompare anche il corpo del carnefice, trasformato in operatore distante.
-        </p>
-
-        <p>
-            Se il XX secolo ha inventato la propaganda, il XXI ha inventato l'anestesia totale: uno sguardo perfettamente indifferente, che osserva la fine del mondo con il distacco di chi aspetta solo che finisca la pubblicità. 
-        </p>
-
-        <p>
-            E per noi il problema non è guardare troppo, ma guardare senza poter agire. Il titolo di quest'opera non è una provocazione. È una constatazione amara. La violenza è già distribuita nei dispositivi che usiamo, nei linguaggi che adottiamo, nelle interfacce che mediano il mondo per noi. 
-        </p>
-
-        
+        <p>Forse non siamo pronti alla prossima guerra mondiale, ma siamo già preparati a guardarla.</p>
+  <img src="images/6.png" class="content-image">
         <div class="quote-block">
-            <span class="italic-quote"> «There has never been a conflict where we can casually watch the intimate final moments of so many people's lives with the swipe or tap of a finger until now.
-Do y'all think we as viewers are completely desensitized at this point or is our brain chemistry changing and effects will show in the future? Is this type of media getting quietly pushed past platform community guidelines to young men to subconsciously prepare us for the next big one?
-#Ukraine #FPV #Drone»
- <span class="source">dal profilo Instagram @mantisintel</span>
+            <span class="italic-quote">“Nothing stands between a slav and his cigarette break”</span>
+            <span class="source">— @kawa_bruh</span>
         </div>
 
-            <p>Forse non siamo pronti alla prossima guerra, ma siamo già preparati a guardarla.</p>
-            
+        <p>Questo video segna una frattura netta tra due regimi dell’immagine: la comunicazione televisiva e quella dei social media. Da un lato il telegiornale, mezzo informativo per eccellenza, mediato, orizzontale, istituzionale; dall’altro una comunicazione immediata, verticale, che appartiene a un linguaggio generazionale e informale.</p>
+
+        <p>Tra questi due orizzonti si colloca l’immagine di un uomo ucraino, all’esterno della propria abitazione, intento a fumare una sigaretta. La scena quotidiana, notturna, viene interrotta dal suono di un drone che attraversa lo spazio e colpisce un edificio fuori campo. La telecamera di sicurezza registra l’evento senza enfasi. Un flash improvviso squarcia l’immagine, ma non modifica in alcun modo la scena.</p>
+
+        <p>L’impassibilità dell’uomo non è indifferenza, ma adattamento. È una forma di elaborazione del trauma che nasce dalla prossimità costante alla violenza. Il pericolo è reale, ma viene assorbito per necessità di sopravvivenza. In questa sospensione tra allarme e normalità si riflette la nostra stessa posizione di spettatori: presenti, informati, ma emotivamente schermati.</p>
+
+        <p>L’immagine si inserisce come una soglia tra ciò che abbiamo visto prima e ciò che vedremo dopo, segnando il passaggio definitivo alla forma dominante dei contenuti contemporanei. La guerra non viene più raccontata, ma condivisa.</p>
+
+        <p>Sui social media, molti utenti rielaborano eventi traumatici attraverso una forma visiva accattivante, quotidiana ed apparentemente leggera. Qua abbiamo diversi esempi: dai vlog girati a Gaza, ai TikTok sull’uragano Helene, fino ai meme ironici su un’imminente fine del mondo. Non si tratta di banalizzazione, ma di un tentativo di restare funzionali, di continuare a esistere in un mondo che non concede pause.</p>
+ <img src="images/7.png" class="content-image">
+  <img src="images/8.png" class="content-image">
+        <p>Negli ultimi anni, piattaforme come TikTok e Instagram hanno visto proliferare un formato video breve che coniuga l'estetica della catastrofe con la nostalgia individuale. La struttura narrativa è dicotomica: l’incipit mostra violenza bellica o eventi traumatici (spesso in POV o FPV), seguiti bruscamente da immagini domestiche o d’infanzia. Questo contrasto simula un’allucinazione pre morte, trasformando l’evento tragico in memoria estetizzata.</p>
+
+        <p>In questo contesto, la morte o la fine della civiltà fungono da “filtro nostalgico”, conferendo valore assoluto a frammenti quotidiani che diventano l’ultimo baluardo dell’umano. La struttura dei social media favorisce una “democratizzazione del trauma”. Nei meme FPV, la visuale in prima persona non documenta la realtà, ma immerge lo spettatore in una simulazione. La violenza viene metabolizzata attraverso codici visivi familiari, come quelli dei videogiochi, permettendo al meme il salto verso il sentimentale e l’accesso a una memoria intima. Ciò che chiamavamo “realtà” è sostituito da una sua versione processata: nitida ma cieca. Nei video FPV, non vediamo attraverso gli occhi di un soldato, ma dell’oggetto che li trasporta. La “PlayStation mentality” trasforma i conflitti in giochi, e la gamification della violenza è solo la punta dell’iceberg di una gamification dell’esistenza intera.</p>
 
     </div>
+        <footer class="site-footer">
+        <div class="footer-inner">
+            <span class="footer-authors">
+                Federico Gentile &amp; Martina Fiori
+            </span>
 
-    <script>
+            <span class="footer-credits">
+                Progetto realizzato nell'ambito del Laboratorio Avanzato di Cinema Espanso<br>
+                Docente: Sara Francesca Tirelli<br>
+                Assistenti: Alessandro Vangi, Elisa La Boria<br>
+                Curatela di Aman Novara
+            </span>
+        </div>
+    </footer>
+
+
+  <script>
         const words = [
-            "FPV", "UAV", "6767", "MOSSAD", "PSYOP", "ALGO", "GORE", "BODYCAM", "7.62MM", "OSINT", 
-            "DOOMER", "COPE", "SEETHE", "MANTISINTEL", "TELEGRAM", "EDGING", "SKIBIDI", "RIZZ", 
-            "MAGA", "BASED", "RED-PILL", "WOKE-VIRUS", "CULTURE-WAR", "TRAD-WIFE", "STOLEN", 
-            "VERIFIED", "FACT-CHECK", "DEBUNKED", "L-RATIO", "REACTIONARY", "ICE", "NATIONALISM", 
-            "DAILY-WIRE", "FASCISM", "PATRIARCHY", "SYSTEMIC", "INCLUSIVITE", "INTERSECTIONAL", 
-            "DECOLONIZE", "FRAGILITY", "EQUITY", "COLONIZER", "ALLYSHIP", "PRIVILEGE", "HATE",
-            "MOSSAD", "CIA", "GEO-LOC", "IP-STRESSER", "DDOS", "EXPLOIT", "RAT", "TROJAN", 
-            "ENCRYPT", "DECRYPT", "DATA-LEAK", "PROXY", "ZERO-DAY", "COVERT", "SIGNAL-INT", 
-            "REDACTED", "SIX-SEVEN", "GRAD", "HIMARS", "5.56MM", "WARCORE", "CYBER",
-            "IUAV", "UNIVERSITY", "IS", "FUELING", "THE", "GENOCIDE", "IN", "PALESTINE",
-            "UKRAINE", "SUDAN", "CONGO", "YEMEN", "SYRIA", "MYANMAR", "TAIWAN", "NATO", 
-            "CENTCOM", "WAGNER", "AZOV", "HAMAS", "HEZBOLLAH", "IDF", "IRON-DOME", 
-            "LOITERING", "MUNITION", "OPERATOR", "THERMAL", "IMPACT",
-            "NODE", "UPLINK", "FREQ", "MHZ", "GHZ", "INFRARED", "LIDAR", "STEALTH",
-            "ROOT", "SHELL", "TCP", "UDP", "PACKET-LOSS", "DOX", "WIPE", "DARKNET", 
-            "DEEPWEB", "SYSTEM-FAILURE", "OVERRIDE", "FORCE-CLOSE", "DATA-MINING"
+          "FPV", "FPV", "UAV", "UAV", "PSYOP", "PSYOP", "ALGO", "ALGO", "BODYCAM", "BODYCAM", 
+            "OSINT", "OSINT", "DOOMER", "DOOMER", "MANTISINTEL", "MANTISINTEL", "TELEGRAM", "TELEGRAM", 
+            "SKIBIDI", "SKIBIDI", "RIZZ", "RIZZ", "GYATT", "GYATT", "OHIO", "OHIO", "FANUM-TAX", "FANUM-TAX", 
+            "SIGMA", "SIGMA", "L-RATIO", "L-RATIO", "GOONING", "GOONING", "MOGGING", "MOGGING",
+            "COPE", "COPE", "SEETHE", "SEETHE", "MAXXING", "MAXXING", "BRAINROT", "BRAINROT", 
+            "CHAD", "CHAD", "SOYJAK", "SOYJAK", "WOJAK", "WOJAK", "KYS", "KYS", "BASED", "BASED", 
+            "REDPILL", "REDPILL", "CASH-STRAPPED", "CASH-STRAPPED", "DELULU", "DELULU", "MEWS", "MEWS", 
+            "LOOKSMAX", "LOOKSMAX", "EDGE-LORD", "EDGE-LORD", 
+            "IUAV", "IUAV", "UNIVERSITY", "UNIVERSITY", "IS", "IS", "FUELING", "FUELING", "THE", "THE", "GENOCIDE", "GENOCIDE", "IN", "IN", "GAZA", "GAZA",
+            "ZERO-DAY", "ZERO-DAY", "EXPLOIT", "EXPLOIT", "PAYLOAD", "PAYLOAD", "RECON", "RECON", 
+            "SHODAN", "SHODAN", "BGP-HIJACK", "BGP-HIJACK", "ICMP", "ICMP", "TCP-RESET", "TCP-RESET", 
+            "SILICON", "SILICON", "COBALT", "COBALT", "LITHIUM", "LITHIUM", "TSMC", "TSMC", "ASML", "ASML", 
+            "WAFER", "WAFER", "DOPING", "DOPING", "MOSFET", "MOSFET", "FPGA", "FPGA", "ASIC", "ASIC", 
+            "RISC-V", "RISC-V", "ARM", "ARM", "AVX512", "AVX512", "SPECTRE", "SPECTRE", "MELTDOWN", "MELTDOWN", 
+            "ROWHAMMER", "ROWHAMMER", "DRAM", "DRAM", "NVME", "NVME", "VLAN", "VLAN", "VXLAN", "VXLAN", 
+            "SDN", "SDN", "K8S", "K8S", "DOCKER", "DOCKER", "JWT", "JWT", "OAUTH", "OAUTH", "YUBIKEY", "YUBIKEY", 
+            "TPM-2.0", "TPM-2.0", "UEFI", "UEFI", "GRUB", "GRUB", "SYSTEMD", "SYSTEMD", "KERNEL-PANIC", "KERNEL-PANIC", 
+            "ROOT-SHELL", "ROOT-SHELL", "POSIX", "POSIX", "UTF8", "UTF8", "BASH", "BASH", "ZSH", "ZSH", 
+            "VIM", "VIM", "GIT-PUSH", "GIT-PUSH", "SHA256", "SHA256", "AES-256", "AES-256", "RSA", "RSA", 
+            "ECC", "ECC", "PGP", "PGP", "DARKNET", "DARKNET", "TOR", "TOR", "ONION", "ONION", 
+            "IPFS", "IPFS", "SIGNAL-INT", "SIGNAL-INT", "TARGET-LOCK", "TARGET-LOCK", "THERMAL-OPTICS", "THERMAL-OPTICS", 
+            "INFRARED", "INFRARED", "LIDAR", "LIDAR", "FREQ-MHZ", "FREQ-MHZ", "UPLINK", "UPLINK", 
+            "WIRE-SHARK", "WIRE-SHARK", "AIR-GAP", "AIR-GAP", "STUXNET", "STUXNET", "PEGASUS", "PEGASUS", 
+            "ZERO-CLICK", "ZERO-CLICK", "VULN", "VULN", "BUFFER-OVERFLOW", "BUFFER-OVERFLOW", "STACK-TRACE", "STACK-TRACE", 
+            "SHELL-CODE", "SHELL-CODE", "OBFUSCATION", "OBFUSCATION", "REVERSE-ENG", "REVERSE-ENG", "MAC-ADDRESS", "MAC-ADDRESS", 
+            "SPOOFING", "SPOOFING", "PHISHING", "PHISHING", "RANSOMWARE", "RANSOMWARE", "BOTNET", "BOTNET", 
+            "DDOS", "DDOS", "SQL-INJECTION", "SQL-INJECTION", "RCE", "RCE", "BYPASS", "BYPASS", 
+            "DECRYPT", "DECRYPT", "ENCRYPT", "ENCRYPT", "SALT-HASH", "SALT-HASH", "PROXY-CHAIN", "PROXY-CHAIN", 
+            "VPN-TUNNEL", "VPN-TUNNEL", "SOCKS5", "SOCKS5", "TOR-EXIT", "TOR-EXIT", "METADATA", "METADATA", 
+            "GEO-LOC", "GEO-LOC", "IP-STRESSER", "IP-STRESSER", "DATA-LEAK", "DATA-LEAK", "DUMP", "DUMP", 
+            "PASTEBIN", "PASTEBIN", "PANOPTICON", "PANOPTICON", "BIOMETRIC", "BIOMETRIC", "FACE-RECOG", "FACE-RECOG", 
+            "PREDICTIVE-POLICING", "PREDICTIVE-POLICING", "SOCIAL-CREDIT", "SOCIAL-CREDIT", "NEURAL-LINK", "NEURAL-LINK", 
+            "LLM", "LLM", "GPT-4", "GPT-4", "STABLE-DIFFUSION", "STABLE-DIFFUSION", "DEEP-FAKE", "DEEP-FAKE", 
+            "SYNTHETIC-MEDIA", "SYNTHETIC-MEDIA", "BOTTED", "BOTTED", "ASTROTURFING", "ASTROTURFING", 
+            "RADICALIZATION", "RADICALIZATION", "POLARIZATION", "POLARIZATION", "DOOM-SCROLLING", "DOOM-SCROLLING", 
+            "ANHEDONIA", "ANHEDONIA", "DISSOCIATION", "DISSOCIATION", "DEREALIZATION", "DEREALIZATION", 
+            "FANON", "FANON", "DECOLONIZE", "DECOLONIZE", "SETTLER", "SETTLER", "APARTHEID", "APARTHEID", 
+            "OCCUPATION", "OCCUPATION", "RESISTANCE", "RESISTANCE", "INTIFADA", "INTIFADA", "HEZBOLLAH", "HEZBOLLAH", 
+            "HAMAS", "HAMAS", "IDF", "IDF", "IRON-DOME", "IRON-DOME", "GRAD-ROCKET", "GRAD-ROCKET", 
+            "HIMARS", "HIMARS", "JAVELIN", "JAVELIN", "BAYRAKTAR", "BAYRAKTAR", "LOITERING-MUNITION", "LOITERING-MUNITION", 
+            "SWITCHBLADE", "SWITCHBLADE", "WARHEAD", "WARHEAD", "COLLATERAL", "COLLATERAL", "BLACK-SITE", "BLACK-SITE", 
+            "EXTRAORDINARY", "EXTRAORDINARY", "WATERBOARDING", "WATERBOARDING", "GUANTANAMO", "GUANTANAMO", 
+            "REDACTED", "REDACTED", "CLASSIFIED", "CLASSIFIED", "TOP-SECRET", "TOP-SECRET", "COVERT-OPS", "COVERT-OPS", 
+            "FALSE-FLAG", "FALSE-FLAG", "PROXY-WAR", "PROXY-WAR", "HYBRID-WARFARE", "HYBRID-WARFARE", 
+            "DISINFO", "DISINFO", "KREMLIN", "KREMLIN", "PENTAGON", "PENTAGON", "MOSSAD", "MOSSAD", 
+            "CIA", "CIA", "MI6", "MI6", "FSB", "FSB", "UNIT-8200", "UNIT-8200", "STORM-SHADOW", "STORM-SHADOW", 
+            "ATACMS", "ATACMS", "NUCLEAR-THRESHOLD", "NUCLEAR-THRESHOLD", "DEATH-GRIPS", "DEATH-GRIPS", 
+            "WAGNER", "WAGNER", 
+            "ADRENOCHROME", "ADRENOCHROME", "MOGGED", "MOGGED", "CLOUDFLARE", "CLOUDFLARE", "CAPTCHA", "CAPTCHA", 
+            "BITCOIN", "BITCOIN", "EXIT-SCAM", "EXIT-SCAM", "INFLATION", "INFLATION", "HYPER-NORMALIZATION", "HYPER-NORMALIZATION", 
+            "CERN", "CERN", "HADRON", "HADRON", "BACK-ROOMS", "BACK-ROOMS", "SCP", "SCP", "SILK-ROAD", "SILK-ROAD", 
+            "JULIAN-ASSANGE", "JULIAN-ASSANGE", "SNOWDEN", "SNOWDEN", "WIKILEAKS", "WIKILEAKS", "EPSTEIN-LIST", "EPSTEIN-LIST", 
+            "Q-ANON", "Q-ANON", "GLOWIE", "GLOWIE", "PSY-OP", "PSY-OP"
         ];
 
         let i = 0;
         const wordElement = document.getElementById('flicker-word');
         const heroElement = document.getElementById('hero');
+        let active = false;
+        const speed = 70;
 
         function flicker() {
-            wordElement.textContent = words[i];
-            i = (i + 1) % words.length;
+            if (!active) return;
+            const currentWord = words[i];
+            wordElement.textContent = currentWord;
 
-            if (heroElement.style.backgroundColor === 'black' || heroElement.style.backgroundColor === '') {
-                heroElement.style.backgroundColor = 'white';
-                heroElement.style.color = 'black';
-            } else {
-                heroElement.style.backgroundColor = 'black';
-                heroElement.style.color = 'white';
-            }
+            // toggle classe per evitare repaint inline
+            heroElement.classList.toggle('invert');
+
+            i = (i + 1) % words.length;
+            setTimeout(flicker, speed);
         }
-        setInterval(flicker, 90);
+
+        // IntersectionObserver per attivare/disattivare il flicker quando la hero è visibile
+        const observer = new IntersectionObserver(entries => {
+            const entry = entries[0];
+            if (entry.isIntersecting) {
+                if (!active) {
+                    active = true;
+                    flicker();
+                }
+            } else {
+                active = false;
+                // assicurati che il background torni leggibile
+                heroElement.classList.remove('invert');
+            }
+        }, { threshold: 0.01 });
+
+        observer.observe(heroElement);
     </script>
 </body>
 </html>
