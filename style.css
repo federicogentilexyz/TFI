@@ -34,8 +34,9 @@ body {
 }
 
 #flicker-word {
-    font-size: clamp(30px, 10vw, 45px);
-    font-weight: 900;
+    font-size: clamp(24px, 8vw, 60px); /* Ridimensiona il font dinamicamente */
+    white-space: nowrap;               /* Impedisce di andare a capo */
+    display: inline-block;             /* Garantisce il corretto posizionamento */
     text-transform: uppercase;
     letter-spacing: -0.07em;
     text-align: center;
@@ -118,3 +119,35 @@ hr.spacer {
         margin-bottom: 20px;
     }
 }
+
+/* FOOTER — isolato dal flicker */
+.site-footer {
+    background: #fff;
+    color: #000;
+    padding: 80px 25px 60px;
+    isolation: isolate;
+    mix-blend-mode: normal;
+}
+
+.footer-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.footer-authors {
+    font-weight: 900;
+    font-size: 16px;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+}
+
+.footer-credits {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.4;
+    opacity: 0.7;
+}
+
