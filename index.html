@@ -28,6 +28,32 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* --- OVERLAY AVVISO --- */
+        #warning-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #000;
+            color: #fff;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            cursor: pointer;
+            transition: opacity 0.5s ease;
+        }
+
+        .warning-text {
+            font-weight: 900;
+            font-size: clamp(18px, 3vw, 24px);
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            line-height: 1.3;
+        }
+
         /* HERO STROBE */
         .hero-strobe {
             height: 100vh;
@@ -40,12 +66,11 @@
             z-index: 10;
             pointer-events: none;
             mix-blend-mode: exclusion;
-            isolation: isolate; /* impedisce al blend di "trapelare" oltre la hero */
+            isolation: isolate; 
             background-color: white;
             color: black;
         }
 
-        /* Stato invertito (class toggle, evita inline style repaint) */
         .hero-strobe.invert {
             background-color: black;
             color: white;
@@ -57,7 +82,7 @@
             text-transform: uppercase;
             letter-spacing: -0.07em;
             text-align: center;
-            color: inherit; /* eredita dal container per toggle con classe */
+            color: inherit;
         }
 
         /* CONTENITORE TESTO */
@@ -65,17 +90,17 @@
             position: relative;
             z-index: 20;
             background-color: #fff;
-            max-width: 850px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 80px 25px; 
+            padding: 100px 30px; 
         }
 
         p {
-            margin-bottom: 30px; 
+            margin-bottom: 25px; 
             text-align: left;
+            font-weight: 900; 
         }
 
-        /* GESTIONE IMMAGINI (COLORI ORIGINALI) */
         .content-image {
             width: 100%;
             max-width: 100%;
@@ -84,50 +109,13 @@
             margin: 40px 0;
         }
 
-        /* CITAZIONI */
-        .quote-block {
-            margin: 60px 0;
-            padding: 0;
-        }
-
-        .italic-quote {
-            font-weight: 500; 
-            font-style: italic;
-            font-size: 1.1em;
-            line-height: 1.2;
-            display: block;
-            margin-bottom: 15px;
-        }
-
-        .source {
-            font-weight: 900; 
-            text-transform: uppercase;
-            font-size: 0.75em;
-            display: block;
-            text-align: right;
-            margin-top: 10px;
-        }
-
-        /* SECOND BLOCK (merge dei CSS aggiuntivi che avevi) */
-        .main-flow { /* leggera differenza compatibile con il layout originale */
-            max-width: 900px;
-            padding: 100px 30px; 
-        }
-
-        p, .intro-text, .accent-block, .final-impact p {
-            margin-bottom: 25px; 
-            text-align: left;
-            font-weight: 900; 
-            text-transform: none; 
-        }
-
         .quote-block {
             margin: 50px 0; 
         }
 
         .italic-quote {
             font-family: 'Inter', sans-serif;
-            font-weight: 500; /* Peso medio */
+            font-weight: 500;
             font-style: italic;
             font-size: 1.1em;
             line-height: 1.1;
@@ -144,30 +132,13 @@
             text-align: right;
         }
 
-        .final-impact {
-            margin-top: 60px; 
-        }
-
-        .mega-bold-final {
-            margin-top: 25px;
-            display: block;
-            text-transform: uppercase;
-        }
-
-        /* Mobile */
         @media (max-width: 600px) {
-            body {
-                font-size: 19px;
-            }
-            .main-flow {
-                padding: 60px 20px;
-            }
-            .quote-block {
-                margin: 40px 0;
-            }
+            body { font-size: 19px; }
+            .main-flow { padding: 60px 20px; }
+            .quote-block { margin: 40px 0; }
         }
 
-        /* FOOTER — isolato dal flicker */
+        /* FOOTER */
         .site-footer {
             background: #fff;
             color: #000;
@@ -201,12 +172,20 @@
 </head>
 <body>
 
+    <div id="warning-overlay" onclick="dismissWarning()">
+        <div class="warning-text">
+            photosensibility warning<br>
+            avviso fotosensibilità
+        </div>
+    </div>
+
     <div class="hero-strobe" id="hero">
         <div id="flicker-word">INITIALIZING</div>
     </div>
 
     <div class="main-flow">
-         <img src="images/5.png" class="content-image">
+        <video src="images/vid3.mp4" class="content-image" autoplay loop muted playsinline></video>
+        
         <div class="quote-block">
             <span class="italic-quote">«There has never been a conflict where we can casually watch the intimate final moments of so many people's lives with the swipe or tap of a finger until now. Do y'all think we as viewers are completely desensitized at this point or is our brain chemistry changing and effects will show in the future? Is this type of media getting quietly pushed past platform community guidelines to young men to subconsciously prepare us for the next big one? #Ukraine #FPV #Drone»</span>
             <span class="source">— dal profilo Instagram @mantisintel</span>
@@ -214,10 +193,10 @@
 
         <p>Lo scrolling è diventato un gesto strutturale della nostra quotidianità. Un atto perfettamente integrato nei codici della sopravvivenza contemporanea, anche per la sua funzione anestetizzante e dissociante. All’interno di questo flusso apparentemente innocuo, scrollare si trasforma facilmente in un accumulo continuo di informazioni, immagini e notizie che si formano, si sovrappongo e si consumano senza mai davvero sedentare.</p>
 
- 
-
         <p>In una società che ci impone di restare funzionali, leggeri e performativi, immagini di guerra, genocidi e catastrofi compaiono sugli stessi schermi che utilizziamo per guardare vlog patinati o seguire l'ennesima narrazione spettacolarizzata della quotidianità occidentale. Il doomscrolling diventa così il principale mezzo di informazione per la Generazione Z: una esposizione continua e non mediata che produce consapevolezza immediata, ma allo stesso tempo destabilizzazione, shock, pessimismo e un senso diffuso di impotenza e depressione.</p>
-    <img src="images/4.png" class="content-image">
+        
+        <video src="images/vid2.mp4" class="content-image" autoplay loop muted playsinline></video>
+        
         <p>L’architettura dei social media trasforma ogni evento in un’icona transitoria, un’immagine-simbolo destinata a durare pochi secondi prima di essere sostituita. Anche Gaza, che sembrava poter rappresentare la tragedia definitiva capace di interrompere il nostro gesto meccanico, è stata rapidamente assorbita e disumanizzata dal dispositivo che l’ha resa visibile.</p>
 
         <p>Il flusso di notizie non si interrompe, ma persiste in modo patologico, fuggente, impotente. La verità è che non possiamo fare altro che questo:</p>
@@ -229,12 +208,15 @@
 
         <p>Non è la realtà, ma una sua versione sterilizzata: una post-verità. È uno sguardo che non respira, non trema, non percepisce l’odore del ferro e del sangue, il peso del corpo, la prossimità della morte. </p>
             
-  <img src="images/9.png" class="content-image">
-    <p>In questo processo il corpo della vittima si riduce a un’immagine sospesa pochi frame prima dell’impatto, mentre quello del carnefice diventa un operatore distante.</p>
+        <video src="images/vid4.mp4" class="content-image" autoplay loop muted playsinline></video>
+
+        <p>In questo processo il corpo della vittima si riduce a un’immagine sospesa pochi frame prima dell’impatto, mentre quello del carnefice diventa un operatore distante.</p>
         <p>Il progetto documenta lo stato di una generazione completamente bruciata dal proprio rapporto con i social media, ma allo stesso tempo lucidamente consapevole della violenza strutturale del mondo che la circonda. Non è una provocazione né una celebrazione del male, ma una constatazione amara. La violenza è già distribuita nei dispositivi che usiamo, nei linguaggi che adottiamo, nelle interfacce che mediano il mondo per noi.</p>
 
         <p>Forse non siamo pronti alla prossima guerra mondiale, ma siamo già preparati a guardarla.</p>
-  <img src="images/6.png" class="content-image">
+        
+        <video src="images/6.png" class="content-image" autoplay loop muted playsinline></video>
+        
         <div class="quote-block">
             <span class="italic-quote">“Nothing stands between a slav and his cigarette break”</span>
             <span class="source">— @kawa_bruh</span>
@@ -249,19 +231,18 @@
         <p>L’immagine si inserisce come una soglia tra ciò che abbiamo visto prima e ciò che vedremo dopo, segnando il passaggio definitivo alla forma dominante dei contenuti contemporanei. La guerra non viene più raccontata, ma condivisa.</p>
 
         <p>Sui social media, molti utenti rielaborano eventi traumatici attraverso una forma visiva accattivante, quotidiana ed apparentemente leggera. Qua abbiamo diversi esempi: dai vlog girati a Gaza, ai TikTok sull’uragano Helene, fino ai meme ironici su un’imminente fine del mondo. Non si tratta di banalizzazione, ma di un tentativo di restare funzionali, di continuare a esistere in un mondo che non concede pause.</p>
- <img src="images/7.png" class="content-image">
-  <img src="images/8.png" class="content-image">
+        
+        <video src="images/vid1.mp4" class="content-image" autoplay loop muted playsinline></video>
+
         <p>Negli ultimi anni, piattaforme come TikTok e Instagram hanno visto proliferare un formato video breve che coniuga l'estetica della catastrofe con la nostalgia individuale. La struttura narrativa è dicotomica: l’incipit mostra violenza bellica o eventi traumatici (spesso in POV o FPV), seguiti bruscamente da immagini domestiche o d’infanzia. Questo contrasto simula un’allucinazione pre morte, trasformando l’evento tragico in memoria estetizzata.</p>
 
         <p>In questo contesto, la morte o la fine della civiltà fungono da “filtro nostalgico”, conferendo valore assoluto a frammenti quotidiani che diventano l’ultimo baluardo dell’umano. La struttura dei social media favorisce una “democratizzazione del trauma”. Nei meme FPV, la visuale in prima persona non documenta la realtà, ma immerge lo spettatore in una simulazione. La violenza viene metabolizzata attraverso codici visivi familiari, come quelli dei videogiochi, permettendo al meme il salto verso il sentimentale e l’accesso a una memoria intima. Ciò che chiamavamo “realtà” è sostituito da una sua versione processata: nitida ma cieca. Nei video FPV, non vediamo attraverso gli occhi di un soldato, ma dell’oggetto che li trasporta. La “PlayStation mentality” trasforma i conflitti in giochi, e la gamification della violenza è solo la punta dell’iceberg di una gamification dell’esistenza intera.</p>
 
     </div>
-        <footer class="site-footer">
-        <div class="footer-inner">
-            <span class="footer-authors">
-                Federico Gentile &amp; Martina Fiori
-            </span>
 
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <span class="footer-authors">Federico Gentile & Martina Fiori</span>
             <span class="footer-credits">
                 Progetto realizzato nell'ambito del Laboratorio Avanzato di Cinema Espanso<br>
                 Docente: Sara Francesca Tirelli<br>
@@ -271,10 +252,9 @@
         </div>
     </footer>
 
-
-  <script>
+    <script>
         const words = [
-          "FPV", "FPV", "UAV", "UAV", "PSYOP", "PSYOP", "ALGO", "ALGO", "BODYCAM", "BODYCAM", 
+            "FPV", "FPV", "UAV", "UAV", "PSYOP", "PSYOP", "ALGO", "ALGO", "BODYCAM", "BODYCAM", 
             "OSINT", "OSINT", "DOOMER", "DOOMER", "MANTISINTEL", "MANTISINTEL", "TELEGRAM", "TELEGRAM", 
             "SKIBIDI", "SKIBIDI", "RIZZ", "RIZZ", "GYATT", "GYATT", "OHIO", "OHIO", "FANUM-TAX", "FANUM-TAX", 
             "SIGMA", "SIGMA", "L-RATIO", "L-RATIO", "GOONING", "GOONING", "MOGGING", "MOGGING",
@@ -332,32 +312,48 @@
         let i = 0;
         const wordElement = document.getElementById('flicker-word');
         const heroElement = document.getElementById('hero');
+        const overlay = document.getElementById('warning-overlay');
+        
         let active = false;
+        let userAccepted = false; // L'esperienza parte bloccata
         const speed = 70;
 
+        // Funzione attivata dal click sull'overlay
+        function dismissWarning() {
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                userAccepted = true;
+                // Se la hero è visibile, avvia subito l'effetto
+                if (isHeroInView) {
+                    active = true;
+                    flicker();
+                }
+            }, 500);
+        }
+
         function flicker() {
-            if (!active) return;
+            if (!active || !userAccepted) return;
             const currentWord = words[i];
             wordElement.textContent = currentWord;
-
-            // toggle classe per evitare repaint inline
             heroElement.classList.toggle('invert');
-
             i = (i + 1) % words.length;
             setTimeout(flicker, speed);
         }
 
-        // IntersectionObserver per attivare/disattivare il flicker quando la hero è visibile
+        let isHeroInView = false;
+
         const observer = new IntersectionObserver(entries => {
             const entry = entries[0];
-            if (entry.isIntersecting) {
-                if (!active) {
+            isHeroInView = entry.isIntersecting;
+            
+            if (isHeroInView) {
+                if (!active && userAccepted) {
                     active = true;
                     flicker();
                 }
             } else {
                 active = false;
-                // assicurati che il background torni leggibile
                 heroElement.classList.remove('invert');
             }
         }, { threshold: 0.01 });
